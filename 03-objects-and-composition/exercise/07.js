@@ -1,14 +1,14 @@
 function townsToJSON(array){
   const [, ...items] = array
   //  regexp to match all spaces and |
-  let regex = /\s?\|\s?/;
-  let res = [];
+  const regex = /\s?\|\s?/;
+  const res = [];
   
   for (let i = 0; i <items.length; i++) {
-    let [, town, latitude, longitude,] = items[i].split(regex);
+    const [, town, latitude, longitude,] = items[i].split(regex);
     latitude = Number(latitude);
     longitude = Number(longitude);
-    let obj = {};
+    const obj = {};
     obj.Town = town;
     // Помощ за тези 2 реда ако може
     obj.Latitude = Math.round(latitude * 100) / 100;
