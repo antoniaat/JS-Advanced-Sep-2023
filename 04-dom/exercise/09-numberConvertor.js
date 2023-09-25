@@ -1,8 +1,6 @@
 function solve() {
-
     const optionBinary = document.createElement("OPTION");
     const optionHexadecimal = document.createElement("OPTION");
-
     const input = document.getElementById('input');
     const selectMenuTo = document.getElementById('selectMenuTo');
     const btn = document.getElementsByTagName('button');
@@ -16,26 +14,16 @@ function solve() {
     selectMenuTo.appendChild(optionBinary);
     selectMenuTo.appendChild(optionHexadecimal);
 
-    convertButton.onclick = function () {
-        if (selectMenuTo.value == 'binary') {
-            result.value = convertToBinary(Number(input.value));
-        } else if (selectMenuTo.value == 'hexadecimal') {
-            result.value = convertToHeXadecimal(Number(input.value));
-        }
-    }
+    convertButton.onclick = () => {
+        const inputValue = Number(input.value)
+        const selectedMenuValue = selectMenuTo.value
 
-    function convertToBinary(num) {
-        let result = [];
-        while (num > 0) {
-            let digit = num % 2;
-            result.unshift(digit);
-            num = Math.floor(num / 2);
+        convertorObj = {
+            '': '', // to prevent undefine if the user not choose value
+            'binary': inputValue.toString(2),
+            'hexadecimal': inputValue.toString(16).toUpperCase()
         }
-        return result.join('');
-    }
 
-    function convertToHeXadecimal(num) {
-        let result = num.toString(16).toUpperCase()
-        return result
+        result.value = convertorObj[selectedMenuValue]
     }
 }
