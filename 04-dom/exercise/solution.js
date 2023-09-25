@@ -1,24 +1,21 @@
 function solve() {
   let text = document.getElementById("text").value;
   let namingConvention = document.getElementById("naming-convention").value;
-  let result = document.getElementById("result");
-  let words = text.toLowerCase().split(" ");
-  result.textContent = convertText(words, namingConvention);
+  let result = convertText(text, namingConvention);
 
-  function convertText(words, convention) {
-    let result = "";
-    if (convention.toLocaleLowerCase().includes("camel")) {
-      result += words[0].toLocaleLowerCase();
-      for (let i = 1; i < words.length; i++) {
-        result += words[i][0].toUpperCase() + words[i].substring(1).toLocaleLowerCase();
-      }
-    } else if (convention.toLocaleLowerCase().includes("pascal")) {
-      for (let i = 0; i < words.length; i++) {
-        result += words[i][0].toUpperCase() + words[i].substring(1).toLocaleLowerCase();
-      }
-    } else {
+  document.getElementById("result").textContent = result;
+
+  function convertText(text, convention) {
+    let words = text.toLowerCase().split(" ");
+    if (convention !== "Camel Case" && convention !== "Pascal Case") {
       return "Error!";
     }
-    return result;
+
+    for (let i = 0; i < words.length; i++) {
+      if (i !== 0 || convention === "Pascal Case") {
+        words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1);
+      }
+    }
+    return words.join("");
   }
 }
