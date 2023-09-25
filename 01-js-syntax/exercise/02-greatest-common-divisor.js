@@ -1,10 +1,6 @@
 function gdc(first, second) {
 
-    if (second === 0) {
-        return first;
-    } else {
-        return gdc(second, first % second)
-    }
+    return second === 0 ? first : gdc(second, first % second);
 
 }
 let result = gdc(15, 5);
