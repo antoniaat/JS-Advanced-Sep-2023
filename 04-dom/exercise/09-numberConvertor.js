@@ -1,18 +1,23 @@
 function solve() {
-    const optionBinary = document.createElement("OPTION");
-    const optionHexadecimal = document.createElement("OPTION");
-    const input = document.getElementById('input');
     const selectMenuTo = document.getElementById('selectMenuTo');
     const btn = document.getElementsByTagName('button');
-    const convertButton = btn[0]
+    const convertButton = btn[0];
+    const input = document.getElementById('input');
     const result = document.getElementById('result');
 
-    optionBinary.textContent = 'Binary';
-    optionBinary.value = 'binary';
-    optionHexadecimal.textContent = 'Hexadecimal';
-    optionHexadecimal.value = 'hexadecimal';
-    selectMenuTo.appendChild(optionBinary);
-    selectMenuTo.appendChild(optionHexadecimal);
+    // Options array
+    const options = [
+        { label: 'Binary', value: 'binary' },
+        { label: 'Hexadecimal', value: 'hexadecimal' }
+    ];
+
+    // Create the options
+    options.forEach(option => {
+        const opt = document.createElement('option');
+        opt.textContent = option.label;
+        opt.value = option.value;
+        selectMenuTo.appendChild(opt);
+    });
 
     convertButton.onclick = () => {
         const inputValue = Number(input.value)
