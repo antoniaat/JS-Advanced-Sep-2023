@@ -1,0 +1,15 @@
+function solve() {
+   document.querySelector('#searchBtn').addEventListener('click', onClick);
+    function onClick() {
+      const tableInfo = Array.from(document.querySelectorAll(`tbody tr`));
+      let searched = document.getElementById(`searchField`);
+      tableInfo.forEach(tr => {
+         if(tr.textContent.includes(searched.value) && searched.value !== ""){
+               tr.className = `select`;
+            }else{
+               tr.className = ``;
+            }
+      });
+      searched.value = ``;
+   }
+}
