@@ -25,7 +25,7 @@ function solve() {
     }
     let isValid = false;
 
- let sum = columnsWithRows[0].reduce((a, b) => a + b);
+ const sum = columnsWithRows[0].reduce((a, b) => a + b);
 
     for (let i = 0; i < columnsWithRows.length; i++) {
       let curRowSum = columnsWithRows[i].reduce((a, b) => a + b);
