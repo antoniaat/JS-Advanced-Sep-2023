@@ -25,22 +25,21 @@ function solve() {
     }
     let isValid = false;
 
-    for (let x = 0; x < columnsWithRows.length; x++) {
-      if (
-        columnsWithRows[x][0] != columnsWithRows[x][1] &&
-        columnsWithRows[x][0] != columnsWithRows[x][2] &&
-        columnsWithRows[x][1] != columnsWithRows[x][2] &&
-        columnsWithRows[0][x] != columnsWithRows[1][x] &&
-        columnsWithRows[0][x] != columnsWithRows[2][x] &&
-        columnsWithRows[1][x] != columnsWithRows[2][x]
-      ) {
-        isValid = true;
-      } else {
+ const sum = columnsWithRows[0].reduce((a, b) => a + b);
+
+    for (let i = 0; i < columnsWithRows.length; i++) {
+      let curRowSum = columnsWithRows[i].reduce((a, b) => a + b);
+
+      let colSum = 0;
+      for (let j = 0; j < columnsWithRows[i].length; j++) {
+        colSum += columnsWithRows[j][i];
+      }
+
+      if (colSum !== sum || curRowSum !== sum) {
         isValid = false;
         break;
       }
     }
-
     if (isValid) {
       table.style.border = '2px solid green';
       result.style.color = 'green';
