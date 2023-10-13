@@ -5,14 +5,14 @@ function townsToJSON(array){
   const res = [];
   
   for (let i = 0; i <items.length; i++) {
-    const [, town, latitude, longitude,] = items[i].split(regex);
-    latitude = Number(latitude);
-    longitude = Number(longitude);
+    let [, town, latitude, longitude,] = items[i].split(regex); // you need to declare with let instead of const, because you need to parse to numbers in the next lines
+    latitude = Number(latitude).toFixed(2);  // we fix the latitude and longitude to the second digit after the decimal point.
+    longitude = Number(longitude).toFixed(2);
     const obj = {};
     obj.Town = town;
-    // Помощ за тези 2 реда ако може
-    obj.Latitude = Math.round(latitude * 100) / 100;
-    obj.Longitude = Math.round(longitude * 100) / 100;
+    
+    obj.Latitude = Number(latitude); // .toFixed() parsed our numbers into strings, but we need them back to numbers again.
+    obj.Longitude = Number(longitude);
     res.push(obj);
   }
 
